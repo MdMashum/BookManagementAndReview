@@ -1,4 +1,7 @@
-const mongoose = require('mongoose'); 
+// creates a connection between MongoDB and the Express web application framework
+// Mongoose supports both promises and callbacks
+const mongoose = require('mongoose');
+// it is a plugin which adds pre-save validation for unique fields within a Mongoose schema
 const uniqueValidator = require('mongoose-unique-validator');
 
 const bookSchema = new mongoose.Schema({
@@ -6,7 +9,7 @@ const bookSchema = new mongoose.Schema({
         type: String,
         required: [true, 'The title field is required'],
         unique: true,
-        trim: true
+        trim: true //white spaces will be removed from both sides of the string
     },
     excerpt: {
         type: String,
@@ -14,8 +17,8 @@ const bookSchema = new mongoose.Schema({
         trim: true
     },
     userId: {
-        type: mongoose.Types.ObjectId,
-        refs: 'User',
+        type: mongoose.Types.ObjectId,//ObjectId is a special type  used for unique identifiers
+        refs: 'User',//mongoose schema reference another mode
         required: [true, 'The userId field is required'],
         trim: true
     },

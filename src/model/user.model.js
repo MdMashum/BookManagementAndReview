@@ -1,7 +1,9 @@
 const mongoose = require('mongoose'); 
-const IsEmail = require('isemail');
+const IsEmail = require('isemail');// for validating the email
 const uniqueValidator = require('mongoose-unique-validator');
-const bcrypt = require('bcrypt'); 
+const bcrypt = require('bcrypt'); //Bcrypt is a popular and trusted method for salt and hashing passwords..
+//stored hash so that your actual password never has to be stored..
+//Salting is simply the addition of a unique, random string of characters
 
 const userSchema = new mongoose.Schema({
     title: {

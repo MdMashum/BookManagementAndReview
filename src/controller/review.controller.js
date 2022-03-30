@@ -7,7 +7,7 @@ const moment = require('moment');
 const addReview = async (req, res) => {
     try {
         const token = req.headers['access-token'];
-        const decodedToken = await tokenService.verifyToken(res, token);
+        const decodedToken = await tokenService.verifyToken(res, token);// decode token and verifying token 
 
         const bookId = req.params.bookId;
         const data = req.body;
@@ -33,13 +33,13 @@ const addReview = async (req, res) => {
                 message: 'You are not authorized !'
             });
         }
-        if (bookRes.isDeleted && !bookRes.deletedAt) {
+        if (bookRes.isDeleted && !bookRes.deletedAt) {//here check delete true and null
             return res.status(404).send({
                 status: false,
                 message: 'Book not found'
             });
         }
-        if (reviewedAt.length != 10) {
+        if (reviewedAt.length != 10) {// check length of the date not more than 10
             return res.status(400).send({
                 status: false,
                 message: '[YYYY-MM-DD] format is allowed !'
@@ -59,7 +59,7 @@ const addReview = async (req, res) => {
         const insertedRes = await reviewSchema.create(data);
         const bookUpdateRes = await bookSchema.findByIdAndUpdate(bookId, {
             $inc: {
-                reviews: +1
+                reviews: +1// increment if review update
             }
         }, {
             new: true
@@ -85,7 +85,7 @@ const updateReview = async (req, res) => {
         const data = req.body;
 
         const key = Object.keys(data);
-        const matchUpdateParams = ['review', 'rating', `reviewer's name`];
+        const matchUpdateParams = ['review', 'rating', `reviewer's name`];// only this filed need
         let status = false;
         for (let i = 0; i < matchUpdateParams.length; i++) {
             key.forEach((data) => {

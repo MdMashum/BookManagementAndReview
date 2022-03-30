@@ -1,3 +1,5 @@
+// creates a connection between MongoDB and the Express web application framework
+// Mongoose supports both promises and callbacks
 const mongoose = require('mongoose'); 
 
 const reviewSchema = new mongoose.Schema({

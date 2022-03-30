@@ -1,6 +1,8 @@
 const express = require('express'); 
-require('dotenv').config(); 
-const bodyParser = require('body-parser'); 
+require('dotenv').config(); // Storing configuration in the environment separate from code
+const bodyParser = require('body-parser'); //if you used post request so you will need the body of the request,
+// so you will need body-parser,four express middlewares for parsing text, JSON, 
+//url-encoded and raw data set through an HTTP request body
 const mongoose = require('mongoose'); 
 const router = require('./routes/route'); 
 
